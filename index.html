@@ -401,25 +401,39 @@
         Your browser does not support the audio element.
       </audio>
       
-      <script>
-        function startSurprise() {
-          // Hide welcome screen
-          document.getElementById('welcomeScreen').style.display = 'none';
-          
-          // Show birthday content
-          document.getElementById('birthdayContent').classList.remove('hidden');
-          
-          // Play music
-          document.getElementById('bdayAudio').play();
-        }
-        
-        function showMessage() {
-          document.getElementById('messageModal').style.display = 'block';
-        }
-        
-        function hideMessage() {
-          document.getElementById('messageModal').style.display = 'none';
-        }
-      </script>
+     <script>
+  function startSurprise() {
+    // Hide welcome screen
+    document.getElementById('welcomeScreen').style.display = 'none';
+
+    // Show birthday content
+    showBirthdayContent();
+
+    // Play music
+    document.getElementById('bdayAudio').play();
+  }
+
+  function showBirthdayContent() {
+    const content = document.getElementById('birthdayContent');
+
+    // Clone the element to force reflow and restart animations
+    const newContent = content.cloneNode(true);
+
+    // Replace the old element with the new one
+    content.parentNode.replaceChild(newContent, content);
+
+    // Remove 'hidden' class to trigger animations
+    newContent.classList.remove('hidden');
+  }
+
+  function showMessage() {
+    document.getElementById('messageModal').style.display = 'block';
+  }
+
+  function hideMessage() {
+    document.getElementById('messageModal').style.display = 'none';
+  }
+</script>
+
   </body>
 </html>
